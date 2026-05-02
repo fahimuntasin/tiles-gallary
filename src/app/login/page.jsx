@@ -12,6 +12,7 @@ export default function LoginPage() {
   const { data: session, isPending } = useSession();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
@@ -44,18 +45,6 @@ export default function LoginPage() {
       setError("Login failed. Please check your credentials.");
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleGoogleLogin = async () => {
-    setError("");
-    try {
-      await authClient.signIn.social({
-        provider: "google",
-        callbackURL: "/",
-      });
-    } catch (err) {
-      setError("Google login failed. Please try again.");
     }
   };
 
@@ -132,13 +121,18 @@ export default function LoginPage() {
           <div className="flex-grow h-px bg-gray-200"></div>
         </div>
 
-        <button
-          type="button"
-          onClick={handleGoogleLogin}
-          className="w-full h-12 flex items-center justify-center border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all"
+        <a
+          href="/auth/google"
+          onClick={() => setGoogleLoading(true)}
+          className="w-full h-12 flex items-center justify-center gap-3 bg-white border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 hover:shadow-md active:scale-[0.98] transition-all cursor-pointer"
         >
-          <img src="/images/google-btn.png" alt="Continue with Google" className="h-10" />
-        </button>
+          {googleLoading ? (
+            <span className="loading loading-spinner loading-sm text-gray-500"></span>
+          ) : (
+            <img src="/images/google-btn.png" alt="Google" className="h-6" />
+          )}
+          <span className="text-gray-600 font-medium">{googleLoading ? "Redirecting to Google..." : "Continue with Google"}</span>
+        </a>
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Don&apos;t have an account?{" "}
