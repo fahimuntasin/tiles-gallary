@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "TilesGallery - Discover Your Perfect Aesthetic",
   description: "A premium tile gallery showcasing beautiful tiles for your spaces",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }) {

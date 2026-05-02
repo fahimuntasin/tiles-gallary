@@ -44,8 +44,7 @@ export default function Navbar() {
     <nav className="bg-[#1e3a5f] shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-2 font-bold text-xl text-[#c8a97e]">
-            <Image src="/images/logo.png" alt="TilesGallery" width={40} height={40} className="rounded" />
+          <Link href="/" className="font-bold text-xl text-[#c8a97e]">
             TilesGallery
           </Link>
 

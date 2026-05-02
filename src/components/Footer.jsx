@@ -1,22 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, Phone, MapPin, MessageCircle, Rss, Camera, Globe, Share2 } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function Footer() {
   return (
     <footer className="bg-[#1e3a5f] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Image src="/images/logo.png" alt="TilesGallery" width={40} height={40} className="rounded" />
-              <span className="font-bold text-xl text-[#c8a97e]">TilesGallery</span>
-            </div>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              Discover your perfect aesthetic with our premium collection of tiles. Quality materials, stunning designs, and expert craftsmanship.
-            </p>
-          </div>
-
           <div>
             <h3 className="text-[#c8a97e] font-semibold text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2">
@@ -45,17 +35,14 @@ export default function Footer() {
           <div>
             <h3 className="text-[#c8a97e] font-semibold text-lg mb-4">Follow Us</h3>
             <div className="flex gap-3">
-              <a href="#" className="w-10 h-10 rounded-full bg-[#2d5a8e] hover:bg-[#c8a97e] hover:text-[#1e3a5f] flex items-center justify-center text-white transition-colors">
-                <Share2 className="h-5 w-5" />
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#2d5a8e] hover:bg-[#c8a97e] flex items-center justify-center transition-colors">
+                <Image src="/images/facebook.svg" alt="Facebook" width={20} height={20} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-[#2d5a8e] hover:bg-[#c8a97e] hover:text-[#1e3a5f] flex items-center justify-center text-white transition-colors">
-                <Rss className="h-5 w-5" />
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#2d5a8e] hover:bg-[#c8a97e] flex items-center justify-center transition-colors">
+                <Image src="/images/instagram.svg" alt="Instagram" width={20} height={20} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-[#2d5a8e] hover:bg-[#c8a97e] hover:text-[#1e3a5f] flex items-center justify-center text-white transition-colors">
-                <Camera className="h-5 w-5" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-[#2d5a8e] hover:bg-[#c8a97e] hover:text-[#1e3a5f] flex items-center justify-center text-white transition-colors">
-                <Globe className="h-5 w-5" />
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#2d5a8e] hover:bg-[#c8a97e] flex items-center justify-center transition-colors">
+                <Image src="/images/x.svg" alt="X" width={20} height={20} />
               </a>
             </div>
           </div>
