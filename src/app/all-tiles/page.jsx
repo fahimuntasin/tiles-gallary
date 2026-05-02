@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Card, Spinner } from "@heroui/react";
 import { ArrowRight } from "lucide-react";
 import { Magnifier } from "@gravity-ui/icons";
@@ -87,13 +88,15 @@ export default function AllTilesPage() {
               {filteredTiles.map((tile) => (
                 <Card key={tile.id} className="overflow-hidden group hover:shadow-xl transition-shadow duration-300">
                   <div className="aspect-square overflow-hidden relative">
-                    <img
+                    <Image
                       src={tile.image}
                       alt={tile.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                     />
                     {!tile.inStock && (
-                      <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+                      <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded z-10">
                         Out of Stock
                       </div>
                     )}

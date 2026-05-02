@@ -18,6 +18,26 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #f8f6f3 inset !important;
+  -webkit-text-fill-color: #1e3a5f !important;
+  border-radius: 12px;
+  caret-color: #1e3a5f;
+}
+
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+}
+
 .marquee-container {
   overflow: hidden;
   white-space: nowrap;

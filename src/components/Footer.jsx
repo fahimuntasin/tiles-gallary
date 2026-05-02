@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { LayoutGrid, Mail, Phone, MapPin, MessageCircle, Rss, Camera, Globe, Share2 } from "lucide-react";
+import Image from "next/image";
+import { Mail, Phone, MapPin, MessageCircle, Rss, Camera, Globe, Share2 } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -8,7 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <LayoutGrid className="h-7 w-7 text-[#c8a97e]" />
+              <Image src="/images/logo.png" alt="TilesGallery" width={40} height={40} className="rounded" />
               <span className="font-bold text-xl text-[#c8a97e]">TilesGallery</span>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">

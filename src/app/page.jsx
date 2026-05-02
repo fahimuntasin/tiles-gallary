@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Card, Spinner } from "@heroui/react";
 import { ArrowRight, Search } from "lucide-react";
 import { Tag, Layers, Gem } from "@gravity-ui/icons";
@@ -27,7 +28,7 @@ export default function HomePage() {
     <div>
       <section className="relative text-white py-24 md:py-36 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/images/banner.jpg" alt="Tiles Gallery Banner" className="w-full h-full object-cover" />
+          <Image src="/images/banner.jpg" alt="Tiles Gallery Banner" fill className="object-cover" priority sizes="100vw" />
           <div className="absolute inset-0 bg-[#1e3a5f]/70"></div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -57,17 +58,17 @@ export default function HomePage() {
         >
           <SwiperSlide>
             <p className="text-center text-white text-sm md:text-base py-1">
-               New Arrivals: Ceramic Blue Tile | Weekly Feature: Modern Geometric Patterns | Join the Community!
+              🔥 New Arrivals: Ceramic Blue Tile | Weekly Feature: Modern Geometric Patterns | Join the Community!
             </p>
           </SwiperSlide>
           <SwiperSlide>
             <p className="text-center text-white text-sm md:text-base py-1">
-               Premium Marble Collection Available Now | Free Shipping on Orders Over $100
+              ✨ Premium Marble Collection Available Now | Free Shipping on Orders Over $100
             </p>
           </SwiperSlide>
           <SwiperSlide>
             <p className="text-center text-white text-sm md:text-base py-1">
-               Terracotta Rustic Tiles - Handcrafted Excellence | Limited Stock Available
+              🎨 Terracotta Rustic Tiles - Handcrafted Excellence | Limited Stock Available
             </p>
           </SwiperSlide>
         </Swiper>
@@ -87,12 +88,8 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredTiles.map((tile) => (
               <Card key={tile.id} className="overflow-hidden group hover:shadow-xl transition-shadow duration-300">
-                <div className="aspect-square overflow-hidden">
-                  <img
-                    src={tile.image}
-                    alt={tile.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                <div className="aspect-square overflow-hidden relative">
+                  <Image src={tile.image} alt={tile.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
                 </div>
                 <div className="p-4">
                   <h3 className="font-semibold text-[#1e3a5f] text-lg mb-1">{tile.title}</h3>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Card, Spinner } from "@heroui/react";
 import { ArrowLeft, Ruler, Gem, Layers, DollarSign } from "lucide-react";
 import { ShieldCheck, CircleCheck } from "@gravity-ui/icons";
@@ -67,11 +68,14 @@ export default function TileDetailsPage() {
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          <div className="aspect-square rounded-xl overflow-hidden shadow-lg">
-            <img
+          <div className="aspect-square rounded-xl overflow-hidden shadow-lg relative">
+            <Image
               src={tile.image}
               alt={tile.title}
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              priority
             />
           </div>
 

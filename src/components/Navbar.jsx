@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useSession } from "@/lib/auth-client";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar } from "@heroui/react";
-import { LayoutGrid, LogIn, LogOut, User, Menu, X } from "lucide-react";
+import { LogIn, LogOut, User, Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const { data: session } = useSession();
@@ -13,8 +14,8 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navLinks = [
-    { href: "/", label: "Home", icon: LayoutGrid },
-    { href: "/all-tiles", label: "All Tiles", icon: LayoutGrid },
+    { href: "/", label: "Home", icon: null },
+    { href: "/all-tiles", label: "All Tiles", icon: null },
     { href: "/my-profile", label: "My Profile", icon: User },
   ];
 
@@ -28,7 +29,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2 font-bold text-xl text-[#c8a97e]">
-            <LayoutGrid className="h-7 w-7" />
+            <Image src="/images/logo.png" alt="TilesGallery" width={40} height={40} className="rounded" />
             TilesGallery
           </Link>
 
@@ -37,13 +38,12 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1.5 ${
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                   isActive(link.href)
                     ? "bg-[#c8a97e] text-[#1e3a5f]"
                     : "text-white hover:bg-[#2d5a8e]"
                 }`}
               >
-                <link.icon className="h-4 w-4" />
                 {link.label}
               </Link>
             ))}
@@ -110,11 +110,10 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium mt-1 ${
+              className={`block px-4 py-2 rounded-md text-sm font-medium mt-1 ${
                 isActive(link.href) ? "bg-[#c8a97e] text-[#1e3a5f]" : "text-white hover:bg-[#1e3a5f]"
               }`}
             >
-              <link.icon className="h-4 w-4" />
               {link.label}
             </Link>
           ))}

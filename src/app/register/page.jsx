@@ -70,77 +70,77 @@ export default function RegisterPage() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl mb-6 text-sm text-center">
+          <div className="bg-red-50 border border-red-300 text-red-700 px-4 py-3 rounded-xl mb-6 text-sm text-center font-medium">
             {error}
           </div>
         )}
 
         <form onSubmit={handleRegister} className="space-y-4">
           <div className="w-full">
-            <label className="block text-sm font-semibold text-[#1e3a5f] mb-2">Name</label>
-            <div className="input input-bordered input-primary flex items-center gap-2 w-full h-12 text-base">
-              <Person className="h-5 w-5 text-gray-400" />
+            <label className="block text-sm font-bold text-[#1e3a5f] mb-2">Name</label>
+            <div className="flex items-center gap-3 w-full h-12 px-4 bg-[#f8f6f3] border-2 border-[#1e3a5f]/20 rounded-xl focus-within:border-[#c8a97e] focus-within:bg-white focus-within:shadow-sm transition-all">
+              <Person className="h-5 w-5 text-[#1e3a5f]" />
               <input
                 type="text"
                 name="name"
                 placeholder="Your full name"
                 required
-                className="grow bg-transparent outline-none text-base"
+                className="grow bg-transparent outline-none text-base text-[#1e3a5f] placeholder:text-[#1e3a5f]/40"
               />
             </div>
           </div>
 
           <div className="w-full">
-            <label className="block text-sm font-semibold text-[#1e3a5f] mb-2">Email</label>
-            <div className="input input-bordered input-primary flex items-center gap-2 w-full h-12 text-base">
-              <Envelope className="h-5 w-5 text-gray-400" />
+            <label className="block text-sm font-bold text-[#1e3a5f] mb-2">Email</label>
+            <div className="flex items-center gap-3 w-full h-12 px-4 bg-[#f8f6f3] border-2 border-[#1e3a5f]/20 rounded-xl focus-within:border-[#c8a97e] focus-within:bg-white focus-within:shadow-sm transition-all">
+              <Envelope className="h-5 w-5 text-[#1e3a5f]" />
               <input
                 type="email"
                 name="email"
                 placeholder="you@example.com"
                 required
-                className="grow bg-transparent outline-none text-base"
+                className="grow bg-transparent outline-none text-base text-[#1e3a5f] placeholder:text-[#1e3a5f]/40"
               />
             </div>
           </div>
 
           <div className="w-full">
-            <label className="block text-sm font-semibold text-[#1e3a5f] mb-2">Photo URL</label>
-            <div className="input input-bordered input-primary flex items-center gap-2 w-full h-12 text-base">
-              <LinkIcon className="h-5 w-5 text-gray-400" />
+            <label className="block text-sm font-bold text-[#1e3a5f] mb-2">Photo URL</label>
+            <div className="flex items-center gap-3 w-full h-12 px-4 bg-[#f8f6f3] border-2 border-[#1e3a5f]/20 rounded-xl focus-within:border-[#c8a97e] focus-within:bg-white focus-within:shadow-sm transition-all">
+              <LinkIcon className="h-5 w-5 text-[#1e3a5f]" />
               <input
                 type="url"
                 name="photoUrl"
                 placeholder="https://example.com/photo.jpg"
-                className="grow bg-transparent outline-none text-base"
+                className="grow bg-transparent outline-none text-base text-[#1e3a5f] placeholder:text-[#1e3a5f]/40"
               />
             </div>
-            <p className="text-xs text-gray-400 mt-1.5">Optional profile image link</p>
+            <p className="text-xs text-[#1e3a5f]/50 mt-1.5">Optional profile image link</p>
           </div>
 
           <div className="w-full">
-            <label className="block text-sm font-semibold text-[#1e3a5f] mb-2">Password</label>
-            <div className="input input-bordered input-primary flex items-center gap-2 w-full h-12 text-base">
-              <Lock className="h-5 w-5 text-gray-400" />
+            <label className="block text-sm font-bold text-[#1e3a5f] mb-2">Password</label>
+            <div className="flex items-center gap-3 w-full h-12 px-4 bg-[#f8f6f3] border-2 border-[#1e3a5f]/20 rounded-xl focus-within:border-[#c8a97e] focus-within:bg-white focus-within:shadow-sm transition-all">
+              <Lock className="h-5 w-5 text-[#1e3a5f]" />
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Create a password"
                 required
                 minLength={6}
-                className="grow bg-transparent outline-none text-base"
+                className="grow bg-transparent outline-none text-base text-[#1e3a5f] placeholder:text-[#1e3a5f]/40"
               />
-              <button type="button" onClick={() => setShowPassword(!showPassword)} className="text-gray-400 hover:text-gray-600">
+              <button type="button" onClick={() => setShowPassword(!showPassword)} className="text-[#1e3a5f]/50 hover:text-[#1e3a5f]">
                 {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
               </button>
             </div>
-            <p className="text-xs text-gray-400 mt-1.5">Must be at least 6 characters with 1 uppercase and 1 number</p>
+            <p className="text-xs text-[#1e3a5f]/50 mt-1.5">Must be at least 6 characters with 1 uppercase and 1 number</p>
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full h-12 bg-[#1e3a5f] text-white font-semibold rounded-xl hover:bg-[#2d5a8e] transition-colors flex items-center justify-center gap-2 text-base"
+            className="w-full h-12 bg-[#1e3a5f] text-white font-bold rounded-xl hover:bg-[#2d5a8e] transition-colors flex items-center justify-center gap-2 text-base shadow-md hover:shadow-lg"
           >
             {loading ? (
               <span className="loading loading-spinner loading-sm"></span>
@@ -167,7 +167,7 @@ export default function RegisterPage() {
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Already have an account?{" "}
-          <Link href="/login" className="text-[#1e3a5f] font-semibold hover:underline">
+          <Link href="/login" className="text-[#c8a97e] font-bold hover:underline">
             Login here
           </Link>
         </p>
