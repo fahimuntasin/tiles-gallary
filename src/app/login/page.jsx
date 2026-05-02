@@ -4,10 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
-import { Button, Card } from "@heroui/react";
 import { Envelope, Lock, Check } from "@gravity-ui/icons";
 import { LogIn, Eye, EyeOff } from "lucide-react";
-import googleIcon from "@/assets/light/web_light_rd_na@1x.png";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -56,11 +54,11 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-[#1e3a5f]/5 to-[#c8a97e]/10 py-12 px-4">
-      <Card className="w-full max-w-md p-8 shadow-xl">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8">
         <div className="text-center mb-8">
-          <div className="flex justify-center mb-3">
-            <div className="w-14 h-14 bg-[#1e3a5f] rounded-full flex items-center justify-center">
-              <LogIn className="h-7 w-7 text-[#c8a97e]" />
+          <div className="flex justify-center mb-4">
+            <div className="w-16 h-16 bg-[#8fbffc] rounded-2xl flex items-center justify-center shadow-md">
+              <LogIn className="h-8 w-8 text-[#c8a97e]" />
             </div>
           </div>
           <h1 className="text-3xl font-bold text-[#1e3a5f]">Welcome Back</h1>
@@ -68,74 +66,72 @@ export default function LoginPage() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg mb-6 text-sm">
+          <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl mb-6 text-sm text-center">
             {error}
           </div>
         )}
 
         <form onSubmit={handleLogin} className="space-y-5">
           <div className="w-full">
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
-            <div className="input input-bordered flex items-center gap-2 w-full">
-              <Envelope className="h-4 w-4 opacity-50" />
+            <label className="block text-sm font-semibold text-[#b1cff6] mb-2">Email</label>
+            <div className="input input-bordered input-primary flex items-center gap-2 w-full h-12 text-base">
+              <Envelope className="h-5 w-5 text-gray-400" />
               <input
                 type="email"
                 name="email"
                 placeholder="you@example.com"
                 required
-                className="grow bg-transparent outline-none"
+                className="grow bg-transparent outline-none text-base"
               />
             </div>
           </div>
 
           <div className="w-full">
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">Password</label>
-            <div className="input input-bordered flex items-center gap-2 w-full">
-              <Lock className="h-4 w-4 opacity-50" />
+            <label className="block text-sm font-semibold text-[#b1cff6] mb-2">Password</label>
+            <div className="input input-bordered input-primary flex items-center gap-2 w-full h-12 text-base">
+              <Lock className="h-5 w-5 text-gray-400" />
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Enter your password"
                 required
                 minLength={6}
-                className="grow bg-transparent outline-none"
+                className="grow bg-transparent outline-none text-base"
               />
               <button type="button" onClick={() => setShowPassword(!showPassword)} className="text-gray-400 hover:text-gray-600">
-                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
               </button>
             </div>
-            <p className="text-xs text-gray-400 mt-1">Must be at least 6 characters</p>
+            <p className="text-xs text-gray-400 mt-1.5">Must be at least 6 characters</p>
           </div>
 
-          <Button
+          <button
             type="submit"
-            fullWidth
-            color="primary"
-            size="lg"
-            isLoading={loading}
-            className="bg-[#1e3a5f] text-white font-semibold hover:bg-[#2d5a8e]"
-            startContent={<Check className="h-4 w-4" />}
+            disabled={loading}
+            className="w-full h-12 bg-[#1e3a5f] text-white font-semibold rounded-xl hover:bg-[#2d5a8e] transition-colors flex items-center justify-center gap-2 text-base"
           >
+            {loading ? (
+              <span className="loading loading-spinner loading-sm"></span>
+            ) : (
+              <Check className="h-5 w-5" />
+            )}
             Login
-          </Button>
+          </button>
         </form>
 
         <div className="my-6 flex items-center gap-4">
           <div className="flex-grow h-px bg-gray-200"></div>
-          <span className="text-sm text-gray-400">or</span>
+          <span className="text-sm text-gray-400 font-medium">or</span>
           <div className="flex-grow h-px bg-gray-200"></div>
         </div>
 
-        <Button
-          onPress={handleGoogleLogin}
-          variant="bordered"
-          fullWidth
-          size="lg"
-          className="border-gray-300 hover:bg-gray-50 h-12"
-          startContent={<img src={googleIcon.src} alt="Google" width={20} height={20} className="inline-block" />}
+        <button
+          type="button"
+          onClick={handleGoogleLogin}
+          className="w-full h-12 flex items-center justify-center border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all"
         >
-          Continue with Google
-        </Button>
+          <img src="/images/google-btn.png" alt="Continue with Google" className="h-10" />
+        </button>
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Don&apos;t have an account?{" "}
@@ -143,7 +139,7 @@ export default function LoginPage() {
             Register here
           </Link>
         </p>
-      </Card>
+      </div>
     </div>
   );
 }
