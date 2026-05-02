@@ -6,6 +6,7 @@ const client = new MongoClient(process.env.MONGODB_URI || "mongodb://localhost:2
 const db = client.db();
 
 export const authConfig = betterAuth({
+  baseURL: process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_API_URL || "https://tiles-gallary.vercel.app",
   database: mongodbAdapter(db),
   emailAndPassword: {
     enabled: true,
