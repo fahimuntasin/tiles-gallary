@@ -154,8 +154,26 @@ export default function RegisterPage() {
         </div>
 
 <a
-          href="/auth/google"
-          onClick={() => setGoogleLoading(true)}
+          href="#"
+          onClick={async (e) => {
+            e.preventDefault();
+            setGoogleLoading(true);
+            try {
+              const result = await authClient.signIn.social({
+                provider: "google",
+                callbackURL: "/",
+              });
+              if (result.data?.url) {
+                window.location.href = result.data.url;
+              } else {
+                setError("Google sign-up failed");
+                setGoogleLoading(false);
+              }
+            } catch {
+              setError("Google sign-up failed");
+              setGoogleLoading(false);
+            }
+          }}
           className="w-full h-12 flex items-center justify-center gap-3 bg-white border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 hover:shadow-md active:scale-[0.98] transition-all cursor-pointer"
         >
           {googleLoading ? (
