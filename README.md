@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TilesGallery
 
-## Getting Started
+A premium tile gallery website showcasing beautiful tiles for your spaces. Built with Next.js (App Router), BetterAuth, MongoDB, and modern UI libraries.
 
-First, run the development server:
+## 🔗 Live URL
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+**Deployment:** Vercel (https://your-domain.vercel.app)
+
+## 🎯 Key Features
+
+- **Home Page:** Banner with "Discover Your Perfect Aesthetic", SwiperJS marquee, featured tiles with react-spring animations
+- **All Tiles:** Search and browse tiles in a responsive grid
+- **Tile Details:** Large preview, specs, and purchase info
+- **Authentication:** Login/Register with email+password and Google OAuth
+- **My Profile:** View and update profile with name and image
+- **Protected Routes:** Private access to /tile/[id] and /my-profile
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 16 (App Router)
+- **UI:** HeroUI + DaisyUI + TailwindCSS
+- **Animations:** Animate.css, React-Spring, SwiperJS
+- **Auth:** BetterAuth with MongoDB adapter
+- **Database:** MongoDB Atlas
+- **Icons:** Lucide React + Gravity UI Icons
+
+## 📦 NPM Packages
+
+```json
+{
+  "next": "16.2.4",
+  "react": "19.2.4",
+  "better-auth": "^1.6.9",
+  "@heroui/react": "^3.0.3",
+  "daisyui": "^5.5.19",
+  "tailwindcss": "^4",
+  "animate.css": "latest",
+  "react-spring": "latest",
+  "swiper": "^12.1.3",
+  "lucide-react": "^1.14.0",
+  "@gravity-ui/icons": "^2.18.0",
+  "mongodb": "^7.2.0"
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+# Install dependencies
+npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Run development server
+npm run dev
 
-## Learn More
+# Build for production
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🔐 Environment Variables
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Create `.env.local`:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```env
+MONGODB_URI=mongodb+srv://...
+BETTER_AUTH_SECRET=your-secret-key
+BETTER_AUTH_URL=http://localhost:3000
+NEXT_PUBLIC_API_URL=http://localhost:3000
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+```
 
-## Deploy on Vercel
+## 📂 Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+src/
+├── app/
+│   ├── page.jsx          # Home page
+│   ├── all-tiles/       # Gallery page
+│   ├── tile/[id]/      # Tile details
+│   ├── login/          # Login page
+│   ├── register/       # Register page
+│   ├── my-profile/     # User profile
+│   ├── update-profile/  # Update profile
+│   ├── auth/google/   # OAuth redirect
+│   └── api/          # API routes
+├── components/
+│   ├── Navbar.jsx
+│   └── Footer.jsx
+└── lib/
+    ├── auth.js         # BetterAuth config
+    └── auth-client.js # Auth client
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📝 Routes
+
+| Route | Type | Description |
+|-------|------|------------|
+| `/` | Public | Home page |
+| `/all-tiles` | Public | Gallery |
+| `/tile/[id]` | Private | Tile details |
+| `/login` | Public | Login |
+| `/register` | Public | Register |
+| `/my-profile` | Private | Profile |
+| `/update-profile` | Private | Update profile |
+| `/auth/google` | Public | Google OAuth |
+
+## 🎨 Design
+
+- **Primary Color:** #1e3a5f (Dark Blue)
+- **Accent Color:** #c8a97e (Gold)
+- **Background:** #f8f6f3 (Light cream)
+
+---
+
+Built with ❤️ for the TilesGallery assignment.
