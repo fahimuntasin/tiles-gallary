@@ -1,11 +1,12 @@
 import { betterAuth } from "better-auth";
-import { MongoDBAdapter } from "@auth/mongodb-adapter";
+import { mongodbAdapter } from "@better-auth/mongo-adapter";
 import { MongoClient } from "mongodb";
 
 const client = new MongoClient(process.env.MONGODB_URI || "mongodb://localhost:27017/tiles-gallery");
+const db = client.db();
 
 export const authConfig = betterAuth({
-  database: MongoDBAdapter(client.db()),
+  database: mongodbAdapter(db),
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: false,
