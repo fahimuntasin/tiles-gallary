@@ -6,19 +6,20 @@ export async function GET() {
   try {
     const res = await fetch(`${baseUrl}/api/auth/sign-in/social`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ provider: "google", callbackURL: "/" }),
+      headers: { 
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        provider: "google", 
+        callbackURL: "/" 
+      }),
     });
 
     const data = await res.json();
 
     if (data.url) {
-      const response = NextResponse.redirect(data.url);
-      const setCookie = res.headers.get("set-cookie");
-      if (setCookie) {
-        response.headers.set("set-cookie", setCookie);
-      }
-      return response;
+      const cleanUrl = data.url.replace(/%0A/g, "");
+      return NextResponse.redirect(cleanUrl);
     }
 
     return NextResponse.redirect(new URL("/login", baseUrl));
