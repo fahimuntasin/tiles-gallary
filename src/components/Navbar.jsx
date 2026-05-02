@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useSession } from "@/lib/auth-client";
-import { Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar } from "@heroui/react";
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar } from "@heroui/react";
 import { LayoutGrid, LogIn, LogOut, User, Menu, X } from "lucide-react";
 
 export default function Navbar() {
@@ -66,8 +66,8 @@ export default function Navbar() {
                     <p className="font-semibold">{session.user.name}</p>
                     <p className="text-xs text-gray-500">{session.user.email}</p>
                   </DropdownItem>
-                  <DropdownItem key="my-profile" href="/my-profile" startContent={<User className="h-4 w-4" />}>
-                    My Profile
+                  <DropdownItem key="my-profile" startContent={<User className="h-4 w-4" />}>
+                    <Link href="/my-profile" className="text-inherit">My Profile</Link>
                   </DropdownItem>
                   <DropdownItem
                     key="logout"
@@ -84,15 +84,13 @@ export default function Navbar() {
                 </DropdownMenu>
               </Dropdown>
             ) : (
-              <Button
-                as={Link}
+              <Link
                 href="/login"
-                className="bg-[#c8a97e] text-[#1e3a5f] font-semibold hover:bg-[#dfc9a8]"
-                size="sm"
-                startContent={<LogIn className="h-4 w-4" />}
+                className="inline-flex items-center gap-1.5 bg-[#c8a97e] text-[#1e3a5f] font-semibold hover:bg-[#dfc9a8] px-4 py-2 rounded-md text-sm transition-colors"
               >
+                <LogIn className="h-4 w-4" />
                 Login
-              </Button>
+              </Link>
             )}
           </div>
 

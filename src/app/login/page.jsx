@@ -109,9 +109,11 @@ export default function LoginPage() {
 
           <Button
             type="submit"
-            className="w-full bg-[#1e3a5f] text-white font-semibold hover:bg-[#2d5a8e]"
+            fullWidth
+            color="primary"
             size="lg"
             isLoading={loading}
+            className="bg-[#1e3a5f] text-white font-semibold hover:bg-[#2d5a8e]"
             startContent={<Check className="h-4 w-4" />}
           >
             Login
@@ -124,14 +126,16 @@ export default function LoginPage() {
           <div className="flex-grow h-px bg-gray-200"></div>
         </div>
 
-        <button
-          type="button"
-          onClick={handleGoogleLogin}
-          className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-2.5 px-4 hover:bg-gray-50 transition-colors text-sm font-medium"
+        <Button
+          onPress={handleGoogleLogin}
+          variant="bordered"
+          fullWidth
+          size="lg"
+          className="border-gray-300 hover:bg-gray-50 h-12"
+          startContent={<img src={googleIcon.src} alt="Google" width={20} height={20} className="inline-block" />}
         >
-          <img src={googleIcon.src} alt="Google" width={20} height={20} />
           Continue with Google
-        </button>
+        </Button>
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Don&apos;t have an account?{" "}

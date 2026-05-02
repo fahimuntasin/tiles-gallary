@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Button, Card, Spinner } from "@heroui/react";
+import { Card, Spinner } from "@heroui/react";
 import { ArrowRight, Search } from "lucide-react";
 import { Tag, Layers, Gem } from "@gravity-ui/icons";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -25,23 +25,25 @@ export default function HomePage() {
 
   return (
     <div>
-      <section className="relative bg-gradient-to-r from-[#1e3a5f] to-[#2d5a8e] text-white py-24 md:py-36">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative text-white py-24 md:py-36 overflow-hidden">
+        <div className="absolute inset-0">
+          <img src="/images/banner.jpg" alt="Tiles Gallery Banner" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-[#1e3a5f]/70"></div>
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             Discover Your <span className="text-[#c8a97e]">Perfect Aesthetic</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
             Explore our curated collection of premium tiles designed to transform your spaces into works of art.
           </p>
-          <Button
-            as={Link}
+          <Link
             href="/all-tiles"
-            size="lg"
-            className="bg-[#c8a97e] text-[#1e3a5f] font-semibold hover:bg-[#dfc9a8]"
-            endContent={<ArrowRight className="h-5 w-5" />}
+            className="inline-flex items-center gap-2 bg-[#c8a97e] text-[#1e3a5f] font-semibold hover:bg-[#dfc9a8] min-w-[180px] h-12 px-6 rounded-lg justify-center transition-colors text-lg"
           >
             Browse Now
-          </Button>
+            <ArrowRight className="h-5 w-5" />
+          </Link>
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
       </section>
@@ -55,17 +57,17 @@ export default function HomePage() {
         >
           <SwiperSlide>
             <p className="text-center text-white text-sm md:text-base py-1">
-              🔥 New Arrivals: Ceramic Blue Tile | Weekly Feature: Modern Geometric Patterns | Join the Community!
+               New Arrivals: Ceramic Blue Tile | Weekly Feature: Modern Geometric Patterns | Join the Community!
             </p>
           </SwiperSlide>
           <SwiperSlide>
             <p className="text-center text-white text-sm md:text-base py-1">
-              ✨ Premium Marble Collection Available Now | Free Shipping on Orders Over $100
+               Premium Marble Collection Available Now | Free Shipping on Orders Over $100
             </p>
           </SwiperSlide>
           <SwiperSlide>
             <p className="text-center text-white text-sm md:text-base py-1">
-              🎨 Terracotta Rustic Tiles - Handcrafted Excellence | Limited Stock Available
+               Terracotta Rustic Tiles - Handcrafted Excellence | Limited Stock Available
             </p>
           </SwiperSlide>
         </Swiper>
@@ -97,14 +99,12 @@ export default function HomePage() {
                   <p className="text-sm text-gray-500 mb-3 line-clamp-2">{tile.description}</p>
                   <div className="flex items-center justify-between">
                     <span className="text-[#c8a97e] font-bold">${tile.price}</span>
-                    <Button
-                      as={Link}
+                    <Link
                       href={`/tile/${tile.id}`}
-                      size="sm"
-                      className="bg-[#1e3a5f] text-white hover:bg-[#2d5a8e]"
+                      className="inline-flex items-center justify-center bg-[#1e3a5f] text-white hover:bg-[#2d5a8e] min-w-[120px] h-10 px-4 rounded-lg text-sm font-medium transition-colors"
                     >
                       View Details
-                    </Button>
+                    </Link>
                   </div>
                 </div>
               </Card>
@@ -113,30 +113,43 @@ export default function HomePage() {
         )}
       </section>
 
-      <section className="bg-gradient-to-r from-[#1e3a5f]/10 to-[#c8a97e]/10 py-16">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a5f] text-center mb-12">Why Choose Us</h2>
+          <div className="text-center mb-16">
+            <span className="text-[#c8a97e] text-sm font-semibold uppercase tracking-widest">Why Choose Us</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a5f] mt-2 mb-4">What Makes Us Different</h2>
+            <div className="w-20 h-1 bg-[#c8a97e] mx-auto rounded-full"></div>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <div className="w-14 h-14 bg-[#c8a97e]/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Layers className="h-7 w-7 text-[#1e3a5f]" />
+            <div className="group relative bg-white border border-gray-100 rounded-2xl p-8 text-center hover:border-[#c8a97e]/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8e] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <Layers className="h-8 w-8 text-[#c8a97e]" />
               </div>
-              <h3 className="text-xl font-semibold text-[#1e3a5f] mb-2">Premium Quality</h3>
-              <p className="text-gray-500 text-sm">Only the finest materials sourced from trusted manufacturers worldwide</p>
+              <h3 className="text-xl font-bold text-[#1e3a5f] mb-3 mt-6">Premium Quality</h3>
+              <p className="text-gray-500 leading-relaxed">Only the finest materials sourced from trusted manufacturers worldwide for lasting beauty</p>
+              <div className="mt-6 pt-4 border-t border-gray-100">
+                <span className="text-[#c8a97e] font-medium text-sm">Learn more →</span>
+              </div>
             </div>
-            <div className="text-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <div className="w-14 h-14 bg-[#c8a97e]/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Gem className="h-7 w-7 text-[#1e3a5f]" />
+            <div className="group relative bg-white border border-gray-100 rounded-2xl p-8 text-center hover:border-[#c8a97e]/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8e] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <Gem className="h-8 w-8 text-[#c8a97e]" />
               </div>
-              <h3 className="text-xl font-semibold text-[#1e3a5f] mb-2">Custom Sizes</h3>
-              <p className="text-gray-500 text-sm">Available in various dimensions to fit any space perfectly</p>
+              <h3 className="text-xl font-bold text-[#1e3a5f] mb-3 mt-6">Custom Sizes</h3>
+              <p className="text-gray-500 leading-relaxed">Available in various dimensions to fit any space perfectly, tailored to your vision</p>
+              <div className="mt-6 pt-4 border-t border-gray-100">
+                <span className="text-[#c8a97e] font-medium text-sm">Learn more →</span>
+              </div>
             </div>
-            <div className="text-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <div className="w-14 h-14 bg-[#c8a97e]/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Tag className="h-7 w-7 text-[#1e3a5f]" />
+            <div className="group relative bg-white border border-gray-100 rounded-2xl p-8 text-center hover:border-[#c8a97e]/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8e] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <Tag className="h-8 w-8 text-[#c8a97e]" />
               </div>
-              <h3 className="text-xl font-semibold text-[#1e3a5f] mb-2">Best Prices</h3>
-              <p className="text-gray-500 text-sm">Competitive pricing without compromising on quality or design</p>
+              <h3 className="text-xl font-bold text-[#1e3a5f] mb-3 mt-6">Best Prices</h3>
+              <p className="text-gray-500 leading-relaxed">Competitive pricing without compromising on quality or design, value guaranteed</p>
+              <div className="mt-6 pt-4 border-t border-gray-100">
+                <span className="text-[#c8a97e] font-medium text-sm">Learn more →</span>
+              </div>
             </div>
           </div>
         </div>
@@ -145,15 +158,13 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a5f] mb-4">Ready to Transform Your Space?</h2>
         <p className="text-gray-500 max-w-xl mx-auto mb-8">Browse our full collection and find the perfect tiles for your project</p>
-        <Button
-          as={Link}
+        <Link
           href="/all-tiles"
-          size="lg"
-          className="bg-[#1e3a5f] text-white font-semibold hover:bg-[#2d5a8e]"
-          endContent={<Search className="h-5 w-5" />}
+          className="inline-flex items-center gap-2 bg-[#1e3a5f] text-white font-semibold hover:bg-[#2d5a8e] min-w-[200px] h-12 px-6 rounded-lg justify-center transition-colors text-lg"
         >
           Explore All Tiles
-        </Button>
+          <Search className="h-5 w-5" />
+        </Link>
       </section>
     </div>
   );
