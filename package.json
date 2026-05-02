@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^3.11.2",
+    "@gravity-ui/icons": "^2.18.0",
     "@heroui/react": "^3.0.3",
     "better-auth": "^1.6.9",
     "daisyui": "^5.5.19",
