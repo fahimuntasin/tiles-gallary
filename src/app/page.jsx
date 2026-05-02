@@ -8,7 +8,40 @@ import { ArrowRight, Search } from "lucide-react";
 import { Tag, Layers, Gem } from "@gravity-ui/icons";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import { useSpring, animated } from "react-spring";
 import "swiper/css";
+
+function AnimatedCard({ tile, index }) {
+  const [props] = useSpring(() => ({
+    from: { opacity: 0, transform: "translateY(50px)" },
+    to: { opacity: 1, transform: "translateY(0px)" },
+    delay: index * 200,
+    config: { mass: 1, tension: 120, friction: 14 },
+  }));
+
+  return (
+    <animated.div style={props} className="h-full">
+      <Card className="overflow-hidden group hover:shadow-xl transition-shadow duration-300">
+        <div className="aspect-square overflow-hidden relative">
+          <Image src={tile.image} alt={tile.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
+        </div>
+        <div className="p-4">
+          <h3 className="font-semibold text-[#1e3a5f] text-lg mb-1">{tile.title}</h3>
+          <p className="text-sm text-gray-500 mb-3 line-clamp-2">{tile.description}</p>
+          <div className="flex items-center justify-between">
+            <span className="text-[#c8a97e] font-bold">${tile.price}</span>
+            <Link
+              href={`/tile/${tile.id}`}
+              className="inline-flex items-center justify-center bg-[#1e3a5f] text-white hover:bg-[#2d5a8e] min-w-[120px] h-10 px-4 rounded-lg text-sm font-medium transition-colors"
+            >
+              View Details
+            </Link>
+          </div>
+        </div>
+      </Card>
+    </animated.div>
+  );
+}
 
 export default function HomePage() {
   const [featuredTiles, setFeaturedTiles] = useState([]);
@@ -86,25 +119,8 @@ export default function HomePage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredTiles.map((tile) => (
-              <Card key={tile.id} className="overflow-hidden group hover:shadow-xl transition-shadow duration-300">
-                <div className="aspect-square overflow-hidden relative">
-                  <Image src={tile.image} alt={tile.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
-                </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-[#1e3a5f] text-lg mb-1">{tile.title}</h3>
-                  <p className="text-sm text-gray-500 mb-3 line-clamp-2">{tile.description}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[#c8a97e] font-bold">${tile.price}</span>
-                    <Link
-                      href={`/tile/${tile.id}`}
-                      className="inline-flex items-center justify-center bg-[#1e3a5f] text-white hover:bg-[#2d5a8e] min-w-[120px] h-10 px-4 rounded-lg text-sm font-medium transition-colors"
-                    >
-                      View Details
-                    </Link>
-                  </div>
-                </div>
-              </Card>
+            {featuredTiles.map((tile, index) => (
+              <AnimatedCard key={tile.id} tile={tile} index={index} />
             ))}
           </div>
         )}
