@@ -74,12 +74,10 @@ export default function LoginPage() {
         )}
 
         <form onSubmit={handleLogin} className="space-y-5">
-          <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text font-medium text-gray-700">Email</span>
-            </label>
-            <label className="input input-bordered flex items-center gap-2 w-full">
-              <Envelope className="h-4 w-4 text-gray-400" />
+          <div className="w-full">
+            <label className="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
+            <div className="input input-bordered flex items-center gap-2 w-full">
+              <Envelope className="h-4 w-4 opacity-50" />
               <input
                 type="email"
                 name="email"
@@ -87,15 +85,13 @@ export default function LoginPage() {
                 required
                 className="grow bg-transparent outline-none"
               />
-            </label>
+            </div>
           </div>
 
-          <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text font-medium text-gray-700">Password</span>
-            </label>
-            <label className="input input-bordered flex items-center gap-2 w-full">
-              <Lock className="h-4 w-4 text-gray-400" />
+          <div className="w-full">
+            <label className="block text-sm font-medium text-gray-700 mb-1.5">Password</label>
+            <div className="input input-bordered flex items-center gap-2 w-full">
+              <Lock className="h-4 w-4 opacity-50" />
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
@@ -107,10 +103,8 @@ export default function LoginPage() {
               <button type="button" onClick={() => setShowPassword(!showPassword)} className="text-gray-400 hover:text-gray-600">
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               </button>
-            </label>
-            <label className="label">
-              <span className="label-text-alt text-gray-400">Must be at least 6 characters</span>
-            </label>
+            </div>
+            <p className="text-xs text-gray-400 mt-1">Must be at least 6 characters</p>
           </div>
 
           <Button
@@ -130,15 +124,14 @@ export default function LoginPage() {
           <div className="flex-grow h-px bg-gray-200"></div>
         </div>
 
-        <Button
-          onPress={handleGoogleLogin}
-          variant="bordered"
-          className="w-full border-gray-300 hover:bg-gray-50"
-          size="lg"
-          startContent={<img src={googleIcon.src} alt="Google" className="h-5 w-5" />}
+        <button
+          type="button"
+          onClick={handleGoogleLogin}
+          className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-2.5 px-4 hover:bg-gray-50 transition-colors text-sm font-medium"
         >
+          <img src={googleIcon.src} alt="Google" width={20} height={20} />
           Continue with Google
-        </Button>
+        </button>
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Don&apos;t have an account?{" "}

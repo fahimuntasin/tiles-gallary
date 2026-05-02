@@ -3,17 +3,17 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { authClient } from "@/lib/auth-client";
-import { Form, TextField, Label, Input, Description, FieldError, Button, Card } from "@heroui/react";
-import { Person, Envelope, Lock, Link as LinkIcon } from "@gravity-ui/icons";
-import { UserPlus } from "lucide-react";
+import { Button, Card } from "@heroui/react";
+import { Person, Envelope, Lock, Check } from "@gravity-ui/icons";
+import { UserPlus, Eye, EyeOff, Link as LinkIcon } from "lucide-react";
 import googleIcon from "@/assets/light/web_light_rd_na@1x.png";
 
 export default function RegisterPage() {
   const router = useRouter();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -77,82 +77,78 @@ export default function RegisterPage() {
           </div>
         )}
 
-        <Form
-          className="flex flex-col gap-4"
-          onSubmit={handleRegister}
-          validationBehavior="native"
-        >
-          <TextField
-            isRequired
-            name="name"
-            validate={(value) => {
-              if (!value || value.trim().length < 2) {
-                return "Name must be at least 2 characters";
-              }
-              return null;
-            }}
-          >
-            <Label>Name</Label>
-            <Input placeholder="Your full name" startContent={<Person className="h-4 w-4 text-gray-400" />} variant="bordered" />
-            <FieldError />
-          </TextField>
+        <form onSubmit={handleRegister} className="space-y-4">
+          <div className="w-full">
+            <label className="block text-sm font-medium text-gray-700 mb-1.5">Name</label>
+            <div className="input input-bordered flex items-center gap-2 w-full">
+              <Person className="h-4 w-4 opacity-50" />
+              <input
+                type="text"
+                name="name"
+                placeholder="Your full name"
+                required
+                className="grow bg-transparent outline-none"
+              />
+            </div>
+          </div>
 
-          <TextField
-            isRequired
-            name="email"
-            type="email"
-            validate={(value) => {
-              if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-                return "Please enter a valid email address";
-              }
-              return null;
-            }}
-          >
-            <Label>Email</Label>
-            <Input placeholder="you@example.com" startContent={<Envelope className="h-4 w-4 text-gray-400" />} variant="bordered" />
-            <FieldError />
-          </TextField>
+          <div className="w-full">
+            <label className="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
+            <div className="input input-bordered flex items-center gap-2 w-full">
+              <Envelope className="h-4 w-4 opacity-50" />
+              <input
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+                required
+                className="grow bg-transparent outline-none"
+              />
+            </div>
+          </div>
 
-          <TextField name="photoUrl" type="url">
-            <Label>Photo URL</Label>
-            <Input placeholder="https://example.com/photo.jpg" startContent={<LinkIcon className="h-4 w-4 text-gray-400" />} variant="bordered" />
-            <Description>Optional profile image link</Description>
-          </TextField>
+          <div className="w-full">
+            <label className="block text-sm font-medium text-gray-700 mb-1.5">Photo URL</label>
+            <div className="input input-bordered flex items-center gap-2 w-full">
+              <LinkIcon className="h-4 w-4 opacity-50" />
+              <input
+                type="url"
+                name="photoUrl"
+                placeholder="https://example.com/photo.jpg"
+                className="grow bg-transparent outline-none"
+              />
+            </div>
+            <p className="text-xs text-gray-400 mt-1">Optional profile image link</p>
+          </div>
 
-          <TextField
-            isRequired
-            minLength={6}
-            name="password"
-            type="password"
-            validate={(value) => {
-              if (value.length < 6) {
-                return "Password must be at least 6 characters";
-              }
-              if (!/[A-Z]/.test(value)) {
-                return "Password must contain at least one uppercase letter";
-              }
-              if (!/[0-9]/.test(value)) {
-                return "Password must contain at least one number";
-              }
-              return null;
-            }}
-          >
-            <Label>Password</Label>
-            <Input placeholder="Create a password" startContent={<Lock className="h-4 w-4 text-gray-400" />} variant="bordered" />
-            <Description>Must be at least 6 characters with 1 uppercase and 1 number</Description>
-            <FieldError />
-          </TextField>
+          <div className="w-full">
+            <label className="block text-sm font-medium text-gray-700 mb-1.5">Password</label>
+            <div className="input input-bordered flex items-center gap-2 w-full">
+              <Lock className="h-4 w-4 opacity-50" />
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Create a password"
+                required
+                minLength={6}
+                className="grow bg-transparent outline-none"
+              />
+              <button type="button" onClick={() => setShowPassword(!showPassword)} className="text-gray-400 hover:text-gray-600">
+                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
+            </div>
+            <p className="text-xs text-gray-400 mt-1">Must be at least 6 characters with 1 uppercase and 1 number</p>
+          </div>
 
           <Button
             type="submit"
             className="w-full bg-[#1e3a5f] text-white font-semibold hover:bg-[#2d5a8e]"
             size="lg"
             isLoading={loading}
+            startContent={<Check className="h-4 w-4" />}
           >
-            <UserPlus className="h-4 w-4" />
             Register
           </Button>
-        </Form>
+        </form>
 
         <div className="my-6 flex items-center gap-4">
           <div className="flex-grow h-px bg-gray-200"></div>
@@ -160,15 +156,14 @@ export default function RegisterPage() {
           <div className="flex-grow h-px bg-gray-200"></div>
         </div>
 
-        <Button
-          onPress={handleGoogleRegister}
-          variant="bordered"
-          className="w-full border-gray-300 hover:bg-gray-50"
-          size="lg"
-          startContent={<Image src={googleIcon} alt="Google" className="h-5 w-5" />}
+        <button
+          type="button"
+          onClick={handleGoogleRegister}
+          className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-2.5 px-4 hover:bg-gray-50 transition-colors text-sm font-medium"
         >
+          <img src={googleIcon.src} alt="Google" width={20} height={20} />
           Continue with Google
-        </Button>
+        </button>
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Already have an account?{" "}
