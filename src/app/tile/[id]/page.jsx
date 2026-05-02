@@ -7,12 +7,20 @@ import Image from "next/image";
 import { Card, Spinner } from "@heroui/react";
 import { ArrowLeft, Ruler, Gem, Layers, DollarSign } from "lucide-react";
 import { ShieldCheck, CircleCheck } from "@gravity-ui/icons";
+import { useSession } from "@/lib/auth-client";
 
 export default function TileDetailsPage() {
   const params = useParams();
   const router = useRouter();
+  const { data: session, isPending: sessionLoading } = useSession();
   const [tile, setTile] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!sessionLoading && !session?.user) {
+      router.push("/login");
+    }
+  }, [session, sessionLoading, router]);
 
   useEffect(() => {
     fetch(`/api/tiles`)
@@ -25,13 +33,15 @@ export default function TileDetailsPage() {
       .catch(() => setLoading(false));
   }, [params.id]);
 
-  if (loading) {
+  if (sessionLoading || loading) {
     return (
       <div className="min-h-[70vh] flex items-center justify-center">
         <Spinner size="lg" />
       </div>
     );
   }
+
+  if (!session?.user) return null;
 
   if (!tile) {
     return (
